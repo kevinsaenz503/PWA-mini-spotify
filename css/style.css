@@ -1,0 +1,471 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#121212;
+    color:white;
+
+    font-family:
+        "Segoe UI",
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    min-height:100vh;
+}
+
+/* CONTENIDO */
+
+.content{
+
+    width:100%;
+
+    padding:20px;
+
+    padding-bottom:130px;
+}
+
+.content h1{
+
+    margin-bottom:25px;
+}
+
+/* BUSCADOR */
+
+#search{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:30px;
+
+    font-size:16px;
+
+    margin-bottom:25px;
+
+    outline:none;
+}
+
+/* GRID */
+
+.songs-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(180px,1fr)
+        );
+
+    gap:20px;
+}
+
+/* TARJETAS */
+
+.card{
+
+    background:#181818;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    text-align:center;
+
+    transition:0.3s;
+}
+
+.card:hover{
+
+    transform:scale(1.03);
+
+    background:#202020;
+}
+
+.cover{
+
+    width:100%;
+
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    margin-bottom:10px;
+}
+
+.card h3{
+
+    margin-bottom:8px;
+}
+
+.card p{
+
+    color:#b3b3b3;
+
+    margin-bottom:15px;
+}
+
+.play-song{
+
+    background:#1DB954;
+
+    color:black;
+
+    border:none;
+
+    padding:10px 20px;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+/* REPRODUCTOR */
+
+.player-bar{
+
+    position:fixed;
+
+    left:0;
+    right:0;
+    bottom:80px;
+
+    background:#181818;
+
+    border-top:1px solid #333;
+
+    padding:8px 12px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+    z-index:1000;
+}
+
+/* PORTADA Y TITULO */
+
+.player-top{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.current-cover img{
+
+    width:40px;
+    height:40px;
+
+    border-radius:8px;
+
+    object-fit:cover;
+
+    background:#333;
+}
+
+.current-info{
+
+    font-size:14px;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+}
+
+/* BOTONES */
+
+.controls{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:8px;
+}
+
+.controls button{
+
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#1DB954;
+
+    font-size:15px;
+
+    cursor:pointer;
+}
+
+/* PROGRESO */
+
+.progress-container{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    font-size:12px;
+}
+
+#progressBar{
+
+    flex:1;
+
+    accent-color:#1DB954;
+
+    height:4px;
+}
+
+/* VOLUMEN */
+
+#volumeBtn{
+
+    width:28px;
+    height:28px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#1DB954;
+
+    font-size:14px;
+
+    cursor:pointer;
+}
+
+/* INFORMACIÓN */
+
+.player-top{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.current-cover img{
+
+    width:45px;
+    height:45px;
+
+    border-radius:8px;
+
+    object-fit:cover;
+
+    background:#333;
+}
+
+.current-info{
+
+    flex:1;
+}
+
+/* CONTROLES */
+
+.controls{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:8px;
+}
+
+.controls button{
+
+    width:38px;
+    height:38px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#1DB954;
+
+    font-size:16px;
+
+    cursor:pointer;
+}
+
+/* BARRA DE PROGRESO */
+.progress-container{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    font-size:13px;
+}
+
+#progressBar{
+
+    flex:1;
+
+    accent-color:#1DB954;
+}
+
+/* BOTÓN VOLUMEN */
+
+#volumeBtn{
+
+    width:38px;
+    height:38px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#1DB954;
+
+    font-size:16px;
+
+    cursor:pointer;
+}
+
+/* NAVEGACIÓN INFERIOR */
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:80px;
+
+    background:black;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    border-top:1px solid #333;
+
+    z-index:1100;
+}
+
+.nav-btn{
+
+    background:none;
+
+    border:none;
+
+    color:#b3b3b3;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:4px;
+
+    cursor:pointer;
+
+    font-size:24px;
+}
+
+.nav-btn span{
+
+    font-size:12px;
+}
+
+.nav-btn.active{
+
+    color:#1DB954;
+}
+
+/* BOTÓN INSTALAR */
+
+#installBtn{
+
+    background:#1DB954;
+
+    color:black;
+
+    border:none;
+
+    padding:15px 25px;
+
+    border-radius:30px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-top:20px;
+}
+
+/* MENSAJE DE BÚSQUEDA */
+.not-found{
+
+    background:#181818;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    color:#b3b3b3;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+    .songs-grid{
+
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(140px,1fr)
+            );
+
+    }
+
+    .cover{
+
+        height:150px;
+
+    }
+
+}
