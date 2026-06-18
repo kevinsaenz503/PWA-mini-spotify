@@ -53,18 +53,10 @@ localStorage.getItem(
 ) || [];
 
 /* CARGAR CANCIONES */
+
+songs = window.songs || [];
 renderSongs();
 renderFavorites();
-.then(response => response.json())
-.then(data => {
-
-    songs = data;
-
-    renderSongs();
-
-    renderFavorites();
-
-});
 
 /* MOSTRAR SECCIONES */
 
