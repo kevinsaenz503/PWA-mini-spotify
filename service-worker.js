@@ -4,40 +4,57 @@ const CACHE_NAME =
 const FILES = [
 
     "./",
+    "./index.html",
     "./css/style.css",
     "./js/app.js",
+    "./js/songs.js",
     "./manifest.webmanifest",
-    "./api/songs"
+    "./img/icono-192.png",
+    "./img/icono-512.png"
 
 ];
 
 /* INSTALAR */
-self.addEventListener("install", event => {
+self.addEventListener(
+"install",
+event => {
 
     event.waitUntil(
 
         caches.open(CACHE_NAME)
-        .then(async cache => {
+        .then(cache => {
 
-            await cache.addAll(FILES);
+            return cache.addAll(FILES);
 
-            const response =
-            await fetch("/api/songs");
+        })
 
-            const songs =
-            await response.json();
+    );
 
-            for(const song of songs){
+}
+);
 
-                await cache.add(
-                    "./songs/" + song.file
-                );
+            for(const song of self.songs || []){
 
-                await cache.add(
-                    "./covers/" + song.cover
-                );
+    try{
 
-            }
+        await cache.add(
+            "./songs/" + song.file
+        );
+
+        await cache.add(
+            "./covers/" + song.cover
+        );
+
+    }catch(error){
+
+        console.error(
+            "No se pudo guardar:",
+            song
+        );
+
+    }
+
+}
 
         })
 
@@ -154,7 +171,7 @@ event => {
             ){
 
                 return caches.match(
-                    "/"
+                    "./"
                 );
 
             }
