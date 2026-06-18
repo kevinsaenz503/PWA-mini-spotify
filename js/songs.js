@@ -1,4 +1,4 @@
-const songs = [
+window.songs = [
     {
         title: "Space Song",
         artist: "Beach House",
