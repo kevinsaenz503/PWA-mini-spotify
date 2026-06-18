@@ -1,5 +1,4 @@
-const CACHE_NAME =
-"mini-spotify-v5";
+const CACHE_NAME = "mini-spotify-v6";
 
 const FILES = [
 
@@ -9,175 +8,117 @@ const FILES = [
     "./js/app.js",
     "./js/songs.js",
     "./manifest.webmanifest",
+
     "./img/icono-192.png",
-    "./img/icono-512.png"
+    "./img/icono-512.png",
+
+    "./songs/space_song.mp3",
+    "./songs/olvidarte.mp3",
+    "./songs/cancioncitas.mp3",
+    "./songs/rey-sin-reina.mp3",
+    "./songs/oye-traicionera.mp3",
+
+    "./covers/space_song.jpg",
+    "./covers/olvidarte.jpg",
+    "./covers/cancioncitas.jpg",
+    "./covers/rey-sin-reina.jpg",
+    "./covers/traicionera.jpg"
 
 ];
 
 /* INSTALAR */
+
 self.addEventListener(
-"install",
-event => {
+    "install",
+    event => {
 
-    event.waitUntil(
+        event.waitUntil(
 
-        caches.open(CACHE_NAME)
-        .then(cache => {
+            caches.open(CACHE_NAME)
+            .then(cache => {
 
-            return cache.addAll(FILES);
+                return cache.addAll(FILES);
 
-        })
+            })
 
-    );
-
-}
-);
-
-            for(const song of self.songs || []){
-
-    try{
-
-        await cache.add(
-            "./songs/" + song.file
         );
 
-        await cache.add(
-            "./covers/" + song.cover
-        );
-
-    }catch(error){
-
-        console.error(
-            "No se pudo guardar:",
-            song
-        );
+        self.skipWaiting();
 
     }
-
-}
-
-        })
-
-    );
-
-});
-
+);
 
 /* ACTIVAR */
 
 self.addEventListener(
-"activate",
-event => {
+    "activate",
+    event => {
 
-    event.waitUntil(
+        event.waitUntil(
 
-        caches.keys()
-        .then(keys => {
+            caches.keys()
+            .then(keys => {
 
-            return Promise.all(
+                return Promise.all(
 
-                keys.map(key => {
+                    keys.map(key => {
 
-                    if(
-                        key !== CACHE_NAME
-                    ){
+                        if (
+                            key !== CACHE_NAME
+                        ) {
 
-                        return caches.delete(
-                            key
-                        );
+                            return caches.delete(
+                                key
+                            );
 
-                    }
+                        }
 
-                })
+                    })
 
-            );
+                );
 
-        })
+            })
 
-    );
+        );
 
-    self.clients.claim();
+        self.clients.claim();
 
-});
+    }
+);
 
 /* PETICIONES */
 
 self.addEventListener(
-"fetch",
-event => {
+    "fetch",
+    event => {
 
-    event.respondWith(
+        event.respondWith(
 
-        caches.match(
-            event.request
-        )
-        .then(response => {
-
-         if(response){
-
-    console.log(
-        "Desde caché:",
-        event.request.url
-    );
-
-    return response;
-
-}
-            return fetch(
+            caches.match(
                 event.request
             )
-            .then(networkResponse => {
+            .then(response => {
 
-                if(
+                if (response) {
 
-                    event.request.method
-                    ===
-                    "GET"
-
-                ){
-
-                    const clone =
-                    networkResponse
-                    .clone();
-
-                    caches
-                    .open(
-                        CACHE_NAME
-                    )
-                    .then(cache => {
-
-                        cache.put(
-                            event.request,
-                            clone
-                        );
-
-                    });
+                    return response;
 
                 }
 
-                return networkResponse;
-
-            });
-
-        })
-        .catch(() => {
-
-            if(
-
-                event.request.mode
-                ===
-                "navigate"
-
-            ){
-
-                return caches.match(
-                    "./"
+                return fetch(
+                    event.request
                 );
 
-            }
+            })
+            .catch(() => {
 
-        })
+                return caches.match(
+                    "./index.html"
+                );
 
-    );
+            })
 
-});
+        );
+
+    }
+);
