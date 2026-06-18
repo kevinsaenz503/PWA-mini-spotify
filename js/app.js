@@ -1,4 +1,4 @@
-let songs = [];
+let songs = window.songs || [];
 
 let currentIndex = 0;
 
