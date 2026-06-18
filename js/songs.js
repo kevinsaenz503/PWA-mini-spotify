@@ -16,13 +16,13 @@ const songs = [
         artist: "Romeo Santos",
         file: "cancioncitas.mp3",
         cover: "cancioncitas.jpg"
-    }
+    },
     {
         title: "Rey sin reina",
         artist: "Julión Álvarez y su Norteño Banda",
         file: "rey-sin-reina.mp3",
         cover: "rey-sin-reina.jpg"
-    }
+    },
 {
         title: "Oye Traicionera",
         artist: "Crooked Stilo",
