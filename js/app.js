@@ -53,7 +53,8 @@ localStorage.getItem(
 ) || [];
 
 /* CARGAR CANCIONES */
-
+renderSongs();
+renderFavorites();
 .then(response => response.json())
 .then(data => {
 
