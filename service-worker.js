@@ -1,7 +1,6 @@
-const CACHE_NAME = "mini-spotify-v7";
+const CACHE_NAME = "mini-spotify-v8";
 
 const FILES = [
-
     "./",
     "./index.html",
     "./css/style.css",
@@ -32,103 +31,97 @@ const FILES = [
     "./covers/te-vas.jpg",
     "./covers/como-llora-mi-alma.jpg",
     "./covers/el-perdedor.jpg",
-    "./covers/salucita.jpg",
-
+    "./covers/salucita.jpg"
 ];
 
 /* INSTALAR */
 
-self.addEventListener(
-    "install",
-    event => {
+self.addEventListener("install", event => {
 
-        event.waitUntil(
+    event.waitUntil(
 
-            caches.open(CACHE_NAME)
-            .then(cache => {
+        caches.open(CACHE_NAME)
+        .then(async cache => {
 
-                return cache.addAll(FILES);
+            for (const file of FILES) {
 
-            })
+                try {
 
-        );
+                    await cache.add(file);
 
-        self.skipWaiting();
+                    console.log("✅ Cacheado:", file);
 
-    }
-);
+                } catch (error) {
 
-/* ACTIVAR */
-
-self.addEventListener(
-    "activate",
-    event => {
-
-        event.waitUntil(
-
-            caches.keys()
-            .then(keys => {
-
-                return Promise.all(
-
-                    keys.map(key => {
-
-                        if (
-                            key !== CACHE_NAME
-                        ) {
-
-                            return caches.delete(
-                                key
-                            );
-
-                        }
-
-                    })
-
-                );
-
-            })
-
-        );
-
-        self.clients.claim();
-
-    }
-);
-
-/* PETICIONES */
-
-self.addEventListener(
-    "fetch",
-    event => {
-
-        event.respondWith(
-
-            caches.match(
-                event.request
-            )
-            .then(response => {
-
-                if (response) {
-
-                    return response;
+                    console.error("❌ Error:", file, error);
 
                 }
 
-                return fetch(
-                    event.request
-                );
+            }
 
-            })
-            .catch(() => {
+        })
 
-                return caches.match(
-                    "./index.html"
-                );
+    );
 
-            })
+    self.skipWaiting();
 
-        );
+});
 
-    }
-);
+/* ACTIVAR */
+
+self.addEventListener("activate", event => {
+
+    event.waitUntil(
+
+        caches.keys()
+        .then(keys =>
+
+            Promise.all(
+
+                keys.map(key => {
+
+                    if (key !== CACHE_NAME) {
+
+                        return caches.delete(key);
+
+                    }
+
+                })
+
+            )
+
+        )
+
+    );
+
+    self.clients.claim();
+
+});
+
+/* FETCH */
+
+self.addEventListener("fetch", event => {
+
+    event.respondWith(
+
+        caches.match(event.request)
+        .then(response => {
+
+            if (response) {
+
+                return response;
+
+            }
+
+            return fetch(event.request)
+            .then(networkResponse => {
+
+                return networkResponse;
+
+            });
+
+        })
+
+    );
+
+});
