@@ -469,3 +469,30 @@ body{
     }
 
 }
+.player-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+}
+
+.current-info{
+    flex:1;
+    overflow:hidden;
+}
+
+#currentSong{
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:14px;
+    font-weight:600;
+}
+
+.current-cover img{
+    width:50px;
+    height:50px;
+    border-radius:8px;
+    object-fit:cover;
+}
