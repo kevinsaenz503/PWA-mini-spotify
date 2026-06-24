@@ -34,5 +34,29 @@ window.songs = [
         artist: "Los Toros Band",
         file: "las espinas.mp3",
         cover: "las espinas.jpg"
+    },
+    {
+        title: "Ya Lo Sé Que Tu Te Vas",
+        artist: "Vicente Fernández",
+        file: "te-vas.mp3",
+        cover: "te-vas.jpg"
+    },
+    {
+        title: "Como Llora Mi Alma",
+        artist: "Eddy Herera",
+        file: "Como Llora Mi Alma.mp3",
+        cover: "como-llora-mi-alma.jpg"
+    },
+    {
+        title: "El Perdedor",
+        artist: "Enrique Iglesias",
+        file: "El Perdedor.mp3",
+        cover: "el-perdedor.jpg"
+    },
+    {
+        title: "Chismofilia",
+        artist: "Luis Alfonso",
+        file: "Chismofilia.mp3",
+        cover: "salucita.jpg"
     }
 ];
