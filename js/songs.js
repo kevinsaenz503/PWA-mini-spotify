@@ -1,9 +1,9 @@
 window.songs = [
     {
-        title: "Space Song",
-        artist: "Beach House",
-        file: "space_song.mp3",
-        cover: "space_song.jpg"
+        title: "Bonita y Mentirosa",
+        artist: "Crooked Stilo",
+        file: "Mentirosa Bonita y Mentirosa.mp3",
+        cover: "bonita-y-mentirosa.jpg"
     },
     {
         title: "Olvidarte",
